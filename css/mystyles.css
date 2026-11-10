@@ -2,10 +2,23 @@
 1. 全站字體與大小寫轉換控制
 =================================================== */
 /* 選取 body 與所有標題層級，統一套用思源黑體 */
-body, h1, h2, h3, h4, h5, h6, 
-.h1, .h2, .h3, .h4, .h5, .h6, .subheading {
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+.subheading {
     font-family: "Noto Sans TC", "Microsoft JhengHei", sans -serif;
-    text-transform: none;/* 關鍵：取消 Bootstrap 預設強制英文字母大寫的設定 */
+    text-transform: none;
+    /* 關鍵：取消 Bootstrap 預設強制英文字母大寫的設定 */
 }
 
 /* 針對履歷的大標題 (h2)，保留適當的大寫視覺樣式 */
@@ -36,8 +49,10 @@ h2 {
 =================================================== */
 /* 選取所有 .resume-section 履歷區塊 */
 .resume-section {
-    /* 設定柔和的淡乳白色或淡黃色背景 (RGB: 255, 248, 220) */
+    /* 圖片透明處透出這個底色；圖片載入失敗時也會顯示 */
     background-color: rgb(255, 248, 220);
-    /* (可選) 加入牆面/紙張紋理背景圖 (圖片路徑相對於 mystyles.css 檔案) */
-    /* background-image: url('../assets/img/background_color.png'); */
+
+    /* mystyles.css 在 css 資料夾內，所以要先回上一層 */
+    background-image: url("../assets/img/background_color.png");
+    background-repeat: repeat;
 }
