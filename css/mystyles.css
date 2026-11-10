@@ -22,7 +22,7 @@ h2 {
     --bs-primary-rgb: 255, 247, 231;
     /* (可選) 同步統一超連結與滑鼠懸停顏色 */
     --bs-link-color: rgb(255, 247, 231);
-    --bs-link-hover-color: rgb(15, 15, 80);
+    --bs-link-hover-color: rgb(255, 247, 231);
 }
 
 /* 同步修改社群圖示按鈕 Hover 時的背景色彩 */
