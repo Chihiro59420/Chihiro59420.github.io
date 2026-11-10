@@ -56,3 +56,28 @@ h2 {
     background-image: url("../assets/img/background_color.png");
     background-repeat: repeat;
 }
+
+/* ===================================================
+4. Waterfall 瀑布流風格作品集樣式
+=================================================== */
+.waterfall-container {
+    column-count: 3;/* 電腦螢幕預設切分為 3 欄瀑布流 */
+    column-gap: 20px;
+}
+
+.waterfall-item {
+    break-inside: avoid;/* 核心技巧：防止卡片被欄位裁切跨欄*/
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* 手機版還原為單欄顯示 */
+@media (max-width: 768px) {
+    .waterfall-container {
+        column-count: 1;
+    }
+}
