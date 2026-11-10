@@ -33,15 +33,15 @@ h2 {
 :root {
     /* 覆蓋 Bootstrap 預設主色 (--bs-primary-rgb) 的 RGB 數值*/
     /* 範例示範：設定為高質感「深大海藍」 (RGB: 25, 25, 112)*/
-    --bs-primary-rgb: 255, 247, 231;
+    --bs-primary-rgb: 96, 147, 91;
     /* (可選) 同步統一超連結與滑鼠懸停顏色 */
-    --bs-link-color: rgb(182, 206, 180);
-    --bs-link-hover-color: rgb(182, 206, 180);
+    --bs-link-color: rgb(96, 147, 91);
+    --bs-link-hover-color: rgb(96, 147, 91);
 }
 
 /* 同步修改社群圖示按鈕 Hover 時的背景色彩 */
 .social-icons .social-icon:hover {
-    background-color: rgb(182, 206, 180);
+    background-color: rgb(96, 147, 91);
 }
 
 /* ===================================================
