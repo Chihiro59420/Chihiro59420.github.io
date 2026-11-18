@@ -25,63 +25,6 @@
     <link href="css/mystyles.css" rel="stylesheet" />
 </head>
 
-<div class="floating-decor" aria-hidden="true">
-    <span class="float-icon icon-star">✦</span>
-    <span class="float-icon icon-flower">✿</span>
-    <span class="float-icon icon-sparkle">✧</span>
-</div>
-
-<button id="soundToggle" class="sound-toggle" type="button" aria-pressed="false">
-    🔇 音效關
-</button>
-
-<script>
-    const soundToggle = document.querySelector("#soundToggle");
-    let soundEnabled = false;
-    let audioContext;
-
-    soundToggle.addEventListener("click", () => {
-        soundEnabled = !soundEnabled;
-
-        soundToggle.textContent = soundEnabled
-            ? "🔊 音效開"
-            : "🔇 音效關";
-
-        soundToggle.setAttribute("aria-pressed", soundEnabled);
-    });
-
-    function playClickSound() {
-        if (!soundEnabled) return;
-
-        audioContext ??= new AudioContext();
-
-        if (audioContext.state === "suspended") {
-            audioContext.resume();
-        }
-
-        const oscillator = audioContext.createOscillator();
-        const volume = audioContext.createGain();
-        const now = audioContext.currentTime;
-
-        oscillator.type = "sine";
-        oscillator.frequency.setValueAtTime(620, now);
-        oscillator.frequency.exponentialRampToValueAtTime(880, now + 0.08);
-
-        volume.gain.setValueAtTime(0.12, now);
-        volume.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
-
-        oscillator.connect(volume);
-        volume.connect(audioContext.destination);
-
-        oscillator.start(now);
-        oscillator.stop(now + 0.12);
-    }
-
-    document.querySelectorAll("#sideNav a").forEach((link) => {
-        link.addEventListener("click", playClickSound);
-    });
-</script>
-
 <body id="page-top">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
