@@ -25,6 +25,63 @@
     <link href="css/mystyles.css" rel="stylesheet" />
 </head>
 
+<div class="floating-decor" aria-hidden="true">
+    <span class="float-icon icon-star">✦</span>
+    <span class="float-icon icon-flower">✿</span>
+    <span class="float-icon icon-sparkle">✧</span>
+</div>
+
+<button id="soundToggle" class="sound-toggle" type="button" aria-pressed="false">
+    🔇 音效關
+</button>
+
+<script>
+    const soundToggle = document.querySelector("#soundToggle");
+    let soundEnabled = false;
+    let audioContext;
+
+    soundToggle.addEventListener("click", () => {
+        soundEnabled = !soundEnabled;
+
+        soundToggle.textContent = soundEnabled
+            ? "🔊 音效開"
+            : "🔇 音效關";
+
+        soundToggle.setAttribute("aria-pressed", soundEnabled);
+    });
+
+    function playClickSound() {
+        if (!soundEnabled) return;
+
+        audioContext ??= new AudioContext();
+
+        if (audioContext.state === "suspended") {
+            audioContext.resume();
+        }
+
+        const oscillator = audioContext.createOscillator();
+        const volume = audioContext.createGain();
+        const now = audioContext.currentTime;
+
+        oscillator.type = "sine";
+        oscillator.frequency.setValueAtTime(620, now);
+        oscillator.frequency.exponentialRampToValueAtTime(880, now + 0.08);
+
+        volume.gain.setValueAtTime(0.12, now);
+        volume.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+
+        oscillator.connect(volume);
+        volume.connect(audioContext.destination);
+
+        oscillator.start(now);
+        oscillator.stop(now + 0.12);
+    }
+
+    document.querySelectorAll("#sideNav a").forEach((link) => {
+        link.addEventListener("click", playClickSound);
+    });
+</script>
+
 <body id="page-top">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
@@ -60,7 +117,8 @@
                     台北市文山區 · 試院路一段 , 130號 · (＋86) 18616337249 ·
                     <a href="mailto:a113080066@email.shu.edu.tw">a113080066@email.shu.edu.tw</a>
                 </div>
-                <p class="lead mb-5">您好！我是宋宣妤，目前就讀於世新大學數位多媒體設計學系。我擅長視覺設計、網頁開發和AI內容創作。具備HTML/CSS/JavaScript基礎，熟悉AI工具來强化專業製作，有效率的完成工作，並持續精進專業技能與取得相關證照，且具備良好的團隊溝通與問題解決能力。有浙江7-11展店部企划助理的经历，協助開發部利用大數據分析，呈现商圈人流數據，設定新市埸的預定點位，輔助主管現場判断。
+                <p class="lead mb-5">
+                    您好！我是宋宣妤，目前就讀於世新大學數位多媒體設計學系。我擅長視覺設計、網頁開發和AI內容創作。具備HTML/CSS/JavaScript基礎，熟悉AI工具來强化專業製作，有效率的完成工作，並持續精進專業技能與取得相關證照，且具備良好的團隊溝通與問題解決能力。有浙江7-11展店部企划助理的经历，協助開發部利用大數據分析，呈现商圈人流數據，設定新市埸的預定點位，輔助主管現場判断。
                 </p>
                 <div class="social-icons">
                     <!-- IG 連結 -->
@@ -72,9 +130,9 @@
                     <!-- thread 連結 -->
                     <a class="social-icon" href="https://www.threads.com/@zero_chihiro" target="_blank"><i
                             class="fa-brands fa-threads"></i>
-                    <!-- GitHub 連結 (填入你剛申請的 GitHub 網址) -->
-                    <a class="social-icon" href="https://github.com/Chihiro59420"><i
-                            class="fa-brands fa-github"></i></a>
+                        <!-- GitHub 連結 (填入你剛申請的 GitHub 網址) -->
+                        <a class="social-icon" href="https://github.com/Chihiro59420"><i
+                                class="fa-brands fa-github"></i></a>
                 </div>
             </div>
         </section>
